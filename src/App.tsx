@@ -9,6 +9,7 @@ import { categoryData } from "./data/categoryData";
 import { GAInitializer } from "./components/GAInitializer";
 import { SEOHead } from "./components/SEOHead";
 import { trackEvent, trackPageView } from "./lib/analytics";
+import { GADebug } from "./components/GADebug";
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -48,6 +49,9 @@ export default function App() {
           <Footer />
         </>
       )}
+
+      {/* TEMPORARY DEBUG WIDGET */}
+      <GADebug />
     </div>
   );
 }
