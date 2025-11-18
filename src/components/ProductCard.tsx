@@ -2,6 +2,7 @@ import { Shield, Zap } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { trackEvent } from "../lib/analytics";
 
 interface Product {
   id: number;
@@ -30,7 +31,10 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      onClick={onClick}
+      onClick={() => {
+        trackEvent("click_product_card", { product_id: product.id, category: product.category });
+        onClick?.();
+      }}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
         <motion.div
@@ -107,6 +111,7 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.stopPropagation();
+              trackEvent("click_view_intel", { product_id: product.id });
               onClick?.();
             }}
           >

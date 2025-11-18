@@ -3,13 +3,14 @@ import { Tent, Fish, Dumbbell, Truck, Mountain, Footprints } from "lucide-react"
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import { useRef } from "react";
+import { trackEvent } from "../lib/analytics";
 
 interface CategoryGridProps {
   onCategoryClick?: (categoryKey: string) => void;
 }
 
 export function CategoryGrid({ onCategoryClick }: CategoryGridProps) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSectionElement | null>(null);
   const isInView = useInView(ref);
 
   const categories = [
@@ -90,10 +91,14 @@ export function CategoryGrid({ onCategoryClick }: CategoryGridProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              onViewportEnter={() => trackEvent("view_category_card", { category_key: category.key })}
             >
               <CategoryCard 
                 category={category} 
-                onClick={() => onCategoryClick?.(category.key)}
+                onClick={() => {
+                  trackEvent("click_category_card", { category_key: category.key });
+                  onCategoryClick?.(category.key);
+                }}
               />
             </motion.div>
           ))}

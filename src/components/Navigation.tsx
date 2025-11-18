@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Target, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import tigerLogo from "figma:asset/c67e8358351626e91bf8845a70f230e994cd4ec6.png";
+import tigerLogo from "../assets/tiger-logo.png";
+import { trackEvent } from "../lib/analytics";
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -28,6 +29,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
   ];
 
   const handleLogoClick = () => {
+    trackEvent("click_logo");
     if (onLogoClick) {
       onLogoClick();
     } else {
@@ -97,6 +99,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
               className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-2 uppercase text-sm tracking-wider transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => trackEvent("click_subscribe_cta")}
             >
               Subscribe
             </motion.button>
@@ -138,7 +141,10 @@ export function Navigation({ onLogoClick }: NavigationProps) {
                   {link.name}
                 </motion.a>
               ))}
-              <button className="w-full bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-3 uppercase text-sm tracking-wider transition-colors">
+              <button
+                className="w-full bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-3 uppercase text-sm tracking-wider transition-colors"
+                onClick={() => trackEvent("click_subscribe_cta")}
+              >
                 Subscribe
               </button>
             </nav>

@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { X, Shield, Zap, Star, Check, ExternalLink, Share2 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "./ui/drawer";
+import { trackEvent } from "../lib/analytics";
 
 interface ProductDetails {
   id: number;
@@ -95,6 +96,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
                   className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-8 py-3 uppercase tracking-wider flex items-center gap-2 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => trackEvent("click_buy_now", { product_id: product.id })}
                 >
                   <ExternalLink className="w-4 h-4" />
                   Buy Now
@@ -103,6 +105,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
                   className="border border-zinc-700 hover:border-orange-600 text-zinc-300 hover:text-orange-600 px-4 py-3 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => trackEvent("click_share_product", { product_id: product.id })}
                 >
                   <Share2 className="w-5 h-5" />
                 </motion.button>

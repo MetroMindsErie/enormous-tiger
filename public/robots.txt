@@ -1,0 +1,71 @@
+# Enormous Tiger - Robots.txt
+# Allow all crawlers by default
+
+User-agent: *
+Allow: /
+
+# Disallow admin/private areas (add as needed)
+# Disallow: /admin/
+# Disallow: /api/
+# Disallow: /private/
+
+# Disallow crawling of assets that waste crawl budget
+Disallow: /*.json$
+Disallow: /*.css$
+Disallow: /*.js$
+Disallow: /build/
+Disallow: /node_modules/
+
+# Allow crawling of important static assets
+Allow: /*.css?*
+Allow: /*.js?*
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.gif$
+
+# Crawl-delay (optional - use only if needed to prevent server overload)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://enormous-tiger.com/sitemap.xml
+
+# Block common bad bots (optional but recommended)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Allow major search engines explicitly (best practice)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /

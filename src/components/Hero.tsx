@@ -1,10 +1,11 @@
 import { Target, ArrowRight, Shield, Award } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
-import tigerLogo from "figma:asset/c67e8358351626e91bf8845a70f230e994cd4ec6.png";
+import { useRef, useEffect } from "react";
+import tigerLogo from "../assets/tiger-logo.png";
+import { trackEvent } from "../lib/analytics";
 
 export function Hero() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -13,6 +14,10 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
+  useEffect(() => {
+    trackEvent("view_hero");
+  }, []);
 
   return (
     <div ref={ref} className="relative min-h-screen flex items-center justify-center bg-zinc-950 overflow-hidden" id="mission">

@@ -3,10 +3,11 @@ import { ProductDrawer } from "./ProductDrawer";
 import { Calendar } from "lucide-react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { trackEvent } from "../lib/analytics";
 
 export function WeeklyFeatured() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -57,7 +58,7 @@ export function WeeklyFeatured() {
       category: "FISHING",
       rating: 9.1,
       image: "https://images.unsplash.com/photo-1601776945824-880c978dd931?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXNoaW5nJTIwZ2VhciUyMGxha2V8ZW58MXx8fHwxNzYzMzM4MzgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      description: "Precision engineering meets battlefield durability. Carbon fiber construction tested across 15,000+ casts.",
+      description: "Engineered for precision. 15,000-cast endurance test with zero structural failure. Battle-tested reliability.",
       durability: "HIGH",
       reliability: "VERIFIED",
       price: "$289",

@@ -1,6 +1,7 @@
 import { Target, Mail } from "lucide-react";
 import { motion } from "motion/react";
-import tigerLogo from "figma:asset/c67e8358351626e91bf8845a70f230e994cd4ec6.png";
+import tigerLogo from "../assets/tiger-logo.png";
+import { trackEvent } from "../lib/analytics";
 
 export function Footer() {
   return (
@@ -68,7 +69,11 @@ export function Footer() {
             <h4 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">Contact</h4>
             <div className="flex items-center gap-2 text-zinc-500 text-sm mb-4">
               <Mail className="w-4 h-4 text-orange-600" />
-              <a href="mailto:info@enormoustiger.com" className="hover:text-orange-600 transition-colors">
+              <a
+                href="mailto:info@enormoustiger.com"
+                className="hover:text-orange-600 transition-colors"
+                onClick={() => trackEvent("click_contact_email")}
+              >
                 info@enormoustiger.com
               </a>
             </div>

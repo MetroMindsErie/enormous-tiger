@@ -2,8 +2,9 @@ import { motion } from "motion/react";
 import { ArrowLeft, SlidersHorizontal, Grid3x3, List, Search } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { ProductDrawer } from "./ProductDrawer";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useInView } from "./hooks/useInView";
+import { trackEvent } from "../lib/analytics";
 
 interface CategoryData {
   id: number;
@@ -19,7 +20,7 @@ interface CategoryPageProps {
 }
 
 export function CategoryPage({ category, onBack }: CategoryPageProps) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSectionElement | null>(null);
   const isInView = useInView(ref);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,6 +30,7 @@ export function CategoryPage({ category, onBack }: CategoryPageProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleProductClick = (product: any) => {
+    trackEvent("view_product_drawer", { product_id: product.id, category: category.name });
     setSelectedProduct(product);
     setDrawerOpen(true);
   };
@@ -63,6 +65,11 @@ export function CategoryPage({ category, onBack }: CategoryPageProps) {
       }
       return 0;
     });
+
+  useEffect(() => { trackEvent("change_sort", { category: category.name, sort_by: sortBy }); }, [sortBy]);
+  useEffect(() => { trackEvent("change_price_filter", { category: category.name, price_filter: filterPrice }); }, [filterPrice]);
+  useEffect(() => { if (searchQuery) trackEvent("search_products", { category: category.name, query: searchQuery }); }, [searchQuery]);
+  useEffect(() => { trackEvent("change_view_mode", { category: category.name, view_mode: viewMode }); }, [viewMode]);
 
   return (
     <>

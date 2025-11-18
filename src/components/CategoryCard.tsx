@@ -2,10 +2,12 @@ import { LucideIcon } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { trackEvent } from "../lib/analytics";
 
 interface Category {
   id: number;
   name: string;
+  key: string;
   icon: LucideIcon;
   count: number;
   image: string;
@@ -23,11 +25,14 @@ export function CategoryCard({ category, onClick }: CategoryCardProps) {
   return (
     <motion.div
       className="group relative bg-zinc-950 border border-zinc-800 hover:border-orange-600/50 transition-all duration-300 overflow-hidden cursor-pointer"
-      onHoverStart={() => setIsHovered(true)}
+      onHoverStart={() => { setIsHovered(true); trackEvent("hover_category_card", { category_key: category.key }); }}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      onClick={onClick}
+      onClick={() => {
+        trackEvent("open_category_from_card", { category_key: category.key });
+        onClick?.();
+      }}
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-zinc-800">
         <motion.div
@@ -69,7 +74,7 @@ export function CategoryCard({ category, onClick }: CategoryCardProps) {
               transition={{ duration: 0.3 }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </motion.div>
           </div>
