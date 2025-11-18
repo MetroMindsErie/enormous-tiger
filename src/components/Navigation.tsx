@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { Target, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import tigerLogo from "figma:asset/c67e8358351626e91bf8845a70f230e994cd4ec6.png";
 
-export function Navigation() {
+interface NavigationProps {
+  onLogoClick?: () => void;
+}
+
+export function Navigation({ onLogoClick }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -22,6 +27,14 @@ export function Navigation() {
     { name: "Contact", href: "#contact" }
   ];
 
+  const handleLogoClick = () => {
+    if (onLogoClick) {
+      onLogoClick();
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -38,17 +51,26 @@ export function Navigation() {
           {/* Logo */}
           <motion.div
             className="flex items-center gap-3 cursor-pointer"
+            onClick={handleLogoClick}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="relative">
-              <Target className="w-10 h-10 text-orange-600" strokeWidth={2.5} />
+            <div className="relative w-12 h-12">
+              {/* Tiger Logo - Rounded */}
+              <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-gradient-to-br from-zinc-800 to-zinc-900">
+                <img
+                  src={tigerLogo}
+                  alt="Enormous Tiger"
+                  className="w-12 h-12 object-contain p-1.5"
+                />
+              </div>
+              {/* Animated Target Ring Behind */}
               <motion.div
-                className="absolute inset-0"
+                className="absolute inset-0 flex items-center justify-center -z-10"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Target className="w-10 h-10 text-orange-600/20" strokeWidth={1} />
+                <Target className="w-16 h-16 text-orange-600/20" strokeWidth={1} />
               </motion.div>
             </div>
             <span className="text-zinc-100 uppercase tracking-wider">

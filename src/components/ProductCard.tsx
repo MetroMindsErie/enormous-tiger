@@ -17,18 +17,20 @@ interface Product {
 
 interface ProductCardProps {
   product: Product;
+  onClick?: () => void;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, onClick }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      className="group bg-zinc-900 border border-zinc-800 hover:border-orange-600/50 transition-all duration-300"
+      className="group bg-zinc-900 border border-zinc-800 hover:border-orange-600/50 transition-all duration-300 cursor-pointer"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
+      onClick={onClick}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
         <motion.div
@@ -103,6 +105,10 @@ export function ProductCard({ product }: ProductCardProps) {
             className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-2 uppercase text-sm tracking-wider transition-colors relative overflow-hidden"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick?.();
+            }}
           >
             <motion.span
               className="absolute inset-0 bg-orange-700"

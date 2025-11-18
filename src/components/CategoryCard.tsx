@@ -13,9 +13,10 @@ interface Category {
 
 interface CategoryCardProps {
   category: Category;
+  onClick?: () => void;
 }
 
-export function CategoryCard({ category }: CategoryCardProps) {
+export function CategoryCard({ category, onClick }: CategoryCardProps) {
   const Icon = category.icon;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,6 +27,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
+      onClick={onClick}
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-zinc-800">
         <motion.div

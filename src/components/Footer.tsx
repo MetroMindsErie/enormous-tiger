@@ -1,5 +1,6 @@
 import { Target, Mail } from "lucide-react";
 import { motion } from "motion/react";
+import tigerLogo from "figma:asset/c67e8358351626e91bf8845a70f230e994cd4ec6.png";
 
 export function Footer() {
   return (
@@ -12,13 +13,23 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <Target className="w-8 h-8 text-orange-600" strokeWidth={2.5} />
-              </motion.div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative w-10 h-10">
+                <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-gradient-to-br from-zinc-800 to-zinc-900">
+                  <img
+                    src={tigerLogo}
+                    alt="Enormous Tiger"
+                    className="w-10 h-10 object-contain p-1.5"
+                  />
+                </div>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center -z-10"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <Target className="w-12 h-12 text-orange-600/20" strokeWidth={1} />
+                </motion.div>
+              </div>
               <span className="text-zinc-100 uppercase tracking-wider">Enormous Tiger</span>
             </div>
             <p className="text-zinc-500 text-sm leading-relaxed">
