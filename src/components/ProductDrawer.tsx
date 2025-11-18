@@ -31,6 +31,20 @@ interface ProductDrawerProps {
 export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
   if (!product) return null;
 
+  const handleAffiliateClick = () => {
+    trackEvent("affiliate_click", {
+      product_id: product.id,
+      product_name: product.name,
+      merchant: "primary",
+      price: product.price,
+      category: product.category,
+      placement: "product_drawer"
+    });
+    
+    // Open affiliate link in new tab
+    window.open(product.affiliateLink, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <Drawer open={open} onOpenChange={onClose}>
       <DrawerContent className="max-h-[90vh] bg-zinc-900 border-zinc-800">
@@ -87,22 +101,22 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
             >
               <div>
                 <p className="text-zinc-500 text-sm uppercase tracking-wide mb-1">
-                  Mission-Tested Price
+                  Best Available Price
                 </p>
                 <p className="text-orange-600 text-2xl">{product.price}</p>
               </div>
               <div className="flex gap-3">
                 <motion.button
-                  className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-8 py-3 uppercase tracking-wider flex items-center gap-2 transition-colors"
+                  className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-8 py-3 uppercase tracking-wider flex items-center gap-2 transition-colors rounded-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => trackEvent("click_buy_now", { product_id: product.id })}
+                  onClick={handleAffiliateClick}
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Buy Now
+                  Check Price
                 </motion.button>
                 <motion.button
-                  className="border border-zinc-700 hover:border-orange-600 text-zinc-300 hover:text-orange-600 px-4 py-3 transition-colors"
+                  className="border border-zinc-700 hover:border-orange-600 text-zinc-300 hover:text-orange-600 px-4 py-3 transition-colors rounded-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => trackEvent("click_share_product", { product_id: product.id })}
@@ -250,15 +264,16 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
               transition={{ duration: 0.4, delay: 0.7 }}
             >
               <motion.button
-                className="w-full bg-orange-600 hover:bg-orange-700 text-zinc-950 px-8 py-4 uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                className="w-full bg-orange-600 hover:bg-orange-700 text-zinc-950 px-8 py-4 uppercase tracking-wider flex items-center justify-center gap-2 transition-colors rounded-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={handleAffiliateClick}
               >
                 <ExternalLink className="w-5 h-5" />
-                Purchase from Verified Supplier
+                View at Merchant
               </motion.button>
               <p className="text-zinc-500 text-xs text-center mt-3 uppercase tracking-wide">
-                30-Day Field Test Guarantee • Free Tactical Shipping
+                Affiliate Link • We earn commission on qualifying purchases
               </p>
             </motion.div>
           </div>

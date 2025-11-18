@@ -26,8 +26,6 @@ export default function App() {
   };
 
   // Page view on category change
-  // (Runs after render when selectedCategory changes)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     trackPageView(selectedCategory ? `/category/${selectedCategory}` : "/");
   }, [selectedCategory]);

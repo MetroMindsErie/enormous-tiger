@@ -30,7 +30,8 @@ export function initAnalytics(measurementId: string) {
   document.head.appendChild(script);
   
   gtag('js', new Date());
-  gtag('config', measurementId, { send_page_view: false });
+  gtag('config', measurementId); // REMOVED send_page_view: false
+  
 }
 
 export function trackPageView(path: string, title?: string) {
@@ -46,4 +47,30 @@ export function trackPageView(path: string, title?: string) {
 export function trackEvent(name: string, params: Record<string, any> = {}) {
   if (!window.gtag) return;
   window.gtag('event', name, params);
+}
+
+// Enhanced affiliate tracking
+export function trackAffiliateClick(params: {
+  product_id: number;
+  product_name: string;
+  merchant: string;
+  price: string;
+  category: string;
+  placement: 'product_page' | 'comparison_table' | 'quick_buy' | 'merchant_grid';
+}) {
+  if (!window.gtag) return;
+  
+  // Track as conversion event
+  window.gtag('event', 'affiliate_click', {
+    ...params,
+    currency: 'USD',
+    value: parseFloat(params.price.replace(/[^0-9.]/g, '')),
+  });
+
+  // Also track as custom dimension
+  window.gtag('event', 'click', {
+    event_category: 'Outbound Link',
+    event_label: `${params.merchant} - ${params.product_name}`,
+    value: parseFloat(params.price.replace(/[^0-9.]/g, '')),
+  });
 }

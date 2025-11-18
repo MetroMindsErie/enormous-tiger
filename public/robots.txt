@@ -4,6 +4,16 @@
 User-agent: *
 Allow: /
 
+# Allow crawling of specific important areas
+Allow: /category/*
+Allow: /product/*
+Allow: /disclosure
+
+# Disallow old checkout pages (if any URLs exist)
+Disallow: /checkout
+Disallow: /cart
+Disallow: /payment
+
 # Disallow admin/private areas (add as needed)
 # Disallow: /admin/
 # Disallow: /api/
@@ -30,7 +40,7 @@ Allow: /*.gif$
 # Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://enormous-tiger.com/sitemap.xml
+Sitemap: https://enormoustiger.com/sitemap.xml
 
 # Block common bad bots (optional but recommended)
 User-agent: AhrefsBot

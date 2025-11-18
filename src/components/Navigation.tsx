@@ -25,6 +25,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
     { name: "Weekly Recon", href: "#weekly" },
     { name: "Categories", href: "#categories" },
     { name: "Mission", href: "#mission" },
+    { name: "Disclosure", href: "/disclosure" }, // ADD THIS
     { name: "Contact", href: "#contact" }
   ];
 
@@ -96,7 +97,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
               </motion.a>
             ))}
             <motion.button
-              className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-2 uppercase text-sm tracking-wider transition-colors"
+              className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-2 uppercase text-sm tracking-wider transition-colors rounded-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => trackEvent("click_subscribe_cta")}
