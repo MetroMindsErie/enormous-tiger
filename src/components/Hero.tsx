@@ -130,9 +130,9 @@ export function Hero() {
               >
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 rounded-full">
                   <img
-                    src={tigerLogo}
-                    alt="Enormous Tiger Logo"
-                    className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+                  src={tigerLogo}
+                  alt="Enormous Tiger Logo"
+                  className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl rounded-full"
                   />
                 </div>
               </motion.div>

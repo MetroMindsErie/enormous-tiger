@@ -57,13 +57,13 @@ export function Navigation({ onLogoClick }: NavigationProps) {
           >
             <div className="relative w-12 h-12">
               {/* Tiger Logo - Rounded */}
-              <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-gradient-to-br from-zinc-800 to-zinc-900">
-                <img
-                  src={tigerLogo}
-                  alt="Enormous Tiger"
-                  className="w-12 h-12 object-contain p-1.5"
-                />
-              </div>
+                <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-zinc-950">
+                  <img
+                    src={tigerLogo}
+                    alt="Enormous Tiger"
+                    className="w-12 h-12 object-cover rounded-full"
+                  />
+                </div>
               {/* Animated Target Ring Behind */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center -z-10"
