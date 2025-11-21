@@ -133,6 +133,10 @@ export function WeeklyFeatured() {
   ];
 
   const handleProductClick = (product: any) => {
+    // remove focus from the triggering element before opening drawer
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setSelectedProduct(product);
     setDrawerOpen(true);
   };

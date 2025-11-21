@@ -31,6 +31,10 @@ export function CategoryPage({ category, onBack }: CategoryPageProps) {
 
   const handleProductClick = (product: any) => {
     trackEvent("view_product_drawer", { product_id: product.id, category: category.name });
+    // blur the focused element so it won't remain focused while root becomes aria-hidden
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setSelectedProduct(product);
     setDrawerOpen(true);
   };

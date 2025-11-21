@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEOHead component will inject additional meta tags -->
-    <title>Enormous Tiger | Mission-Critical Product Intelligence</title>
-    <meta name="description" content="Actionable, field-tested product intelligence derived from 30+ years of military and emergency response operations." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <!-- Vite will replace %VITE_GA_ID% with the value from .env at build time -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '%VITE_GA_ID%');
+  </script>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEOHead component will inject additional meta tags -->
+  <title>Enormous Tiger | Mission-Critical Product Intelligence</title>
+  <meta name="description"
+    content="Actionable, field-tested product intelligence derived from 30+ years of military and emergency response operations." />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

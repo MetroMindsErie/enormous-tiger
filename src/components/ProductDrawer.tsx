@@ -3,6 +3,7 @@ import { X, Shield, Zap, Star, Check, ExternalLink, Share2 } from "lucide-react"
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "./ui/drawer";
 import { trackEvent } from "../lib/analytics";
+import { useEffect, useRef } from "react";
 
 interface ProductDetails {
   id: number;
@@ -30,6 +31,17 @@ interface ProductDrawerProps {
 
 export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
   if (!product) return null;
+
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (open) {
+      // focus the close button when the drawer opens to trap focus inside the dialog
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 0);
+    }
+  }, [open]);
 
   const handleAffiliateClick = () => {
     trackEvent("affiliate_click", {
@@ -69,6 +81,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
                 </div>
               </div>
               <button
+                ref={closeButtonRef}
                 onClick={onClose}
                 className="text-zinc-400 hover:text-zinc-100 transition-colors p-2"
               >

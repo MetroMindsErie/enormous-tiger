@@ -118,7 +118,7 @@ export function Hero() {
               
               {/* Main logo - rounded with shadow */}
               <motion.div
-                className="relative rounded-full overflow-hidden shadow-2xl shadow-orange-600/30 border-4 border-orange-600/30"
+                className="relative rounded-full overflow-hidden shadow-2xl shadow-orange-600/30 border-4 shadow-orange-600/30 border- border-orange-00/30"
                 animate={{ 
                   scale: [1, 1.03, 1],
                   boxShadow: [
@@ -133,11 +133,12 @@ export function Hero() {
                   ease: "easeInOut"
                 }}
               >
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 rounded-full">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-full flex items-center justify-center w-[380px] h-[380px] md:w-[428px] md:h-[428px] p-8">
                   <img
-                  src={tigerLogo}
-                  alt="Enormous Tiger Logo"
-                  className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl rounded-full"
+                    src={tigerLogo}
+                    alt="Enormous Tiger Logo"
+                    className="w-60 h-60 md:w-72 md:h-72 object-contain rounded-full border-4 border-orange-600/30 drop-shadow-xl"
+                    style={{ backgroundClip: "padding-box" }}
                   />
                 </div>
               </motion.div>

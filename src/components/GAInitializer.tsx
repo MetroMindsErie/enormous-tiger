@@ -3,9 +3,8 @@ import { initAnalytics, trackPageView } from "../lib/analytics";
 
 export function GAInitializer() {
   useEffect(() => {
-    const measurementId = import.meta.env.VITE_GA_ID;
-    
-    console.log('🔍 GA Initializer - VITE_GA_ID:', measurementId);
+    // Prefer runtime Vite env var; fallback to the build-time placeholder to ensure consistency.
+    const measurementId = import.meta.env.VITE_GA_ID || "%VITE_GA_ID%";
     
     if (measurementId) {
       console.log('✅ Initializing Google Analytics...');

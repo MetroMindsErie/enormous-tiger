@@ -27,6 +27,8 @@ export function SEOHead({ selectedCategory, categoryData }: SEOHeadProps) {
       { tag: "meta", attrs: { name: "author", content: "Enormous Tiger" } },
       { tag: "meta", attrs: { name: "keywords", content: cat ? `${cat.name}, tactical gear, product reviews, field tested` : "tactical gear, product reviews, field tested, military grade" } },
       
+      // Mobile web app meta recommended (avoid apple-only deprecation warning)
+      { tag: "meta", attrs: { name: "mobile-web-app-capable", content: "yes" } },
       // Open Graph
       { tag: "meta", attrs: { property: "og:title", content: title } },
       { tag: "meta", attrs: { property: "og:description", content: description } },
