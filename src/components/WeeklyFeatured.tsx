@@ -13,6 +13,86 @@ export function WeeklyFeatured() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const featuredProducts = [
+        {
+      id: 701,
+      name: "Benchmade North Fork",
+      category: "HUNTING KNIVES",
+      rating: 8.5,
+      image: "/assets/knives/northfork-v1.png",
+      description: "Best all-around folder. Premium S30V steel with AXIS lock delivers exceptional lock strength and superior one-handed field usability.",
+      durability: "EXCEPTIONAL",
+      reliability: "PROVEN",
+      price: "$185",
+      fullDescription: "The Benchmade North Fork represents the pinnacle of tactical folder engineering. Utilizing premium S30V stainless steel with a hardness rating of 58-60 HRC, this knife delivers exceptional edge retention through extended field-dressing operations. The proprietary AXIS lock mechanism provides near-fixed-blade strength while maintaining ambidextrous one-handed operation—a critical safety feature in field conditions. G10 handles maintain superior grip even when wet or bloody, proving their superiority over traditional materials in real-world hunting scenarios.",
+      specs: [
+        { label: "Blade Steel", value: "S30V Premium Stainless" },
+        { label: "Hardness Rating", value: "58-60 HRC" },
+        { label: "Lock Type", value: "AXIS Lock (Proprietary)" },
+        { label: "Handle Material", value: "G10 / Micarta" },
+        { label: "Blade Length", value: "2.97 inches" },
+        { label: "Weight", value: "2.72 oz" }
+      ],
+      pros: [
+        "Premium S30V steel with excellent edge retention for field-dressing tasks",
+        "Exceptional AXIS lock strength provides near-fixed-blade reliability",
+        "Ambidextrous one-handed opening and closing for field safety",
+        "G10/Micarta handles maintain grip in wet or bloody conditions",
+        "Advanced steel options and superior handle materials"
+      ],
+      cons: [
+        "High initial cost compared to entry-level folders",
+        "Requires understanding of AXIS lock mechanism for optimal use",
+        "Premium features may be unnecessary for casual users"
+      ],
+      testResults: [
+        { metric: "Core Performance Efficacy", score: "9.0/10", description: "Premium stainless steel with excellent skinning geometry. Superior edge retention through field-dressing tasks." },
+        { metric: "Durability & Build Quality", score: "8.5/10", description: "G10/Micarta handles with exceptional AXIS lock strength. Near-fixed-blade reliability." },
+        { metric: "Usability & Ergonomics", score: "9.0/10", description: "Ambidextrous, fast one-handed opening/closing. Major safety advantage in field operations." },
+        { metric: "Feature Set & Innovation", score: "9.0/10", description: "Advanced steel options and superior handle materials. Industry-leading lock technology." },
+        { metric: "Value Proposition", score: "7.0/10", description: "High initial cost justified by excellent lifetime value and durability." }
+      ],
+      affiliateLink: "https://example.com/benchmade-north-fork"
+    },
+    {
+      id: 704,
+      name: "Havalon Piranta",
+      category: "HUNTING KNIVES",
+      rating: 8.0,
+      image: "/assets/knives/havalon-v1.jpg",
+      description: "Best for precision skinning. Surgical-grade replaceable blades provide unbeatable sharpness for detail work with no field sharpening required.",
+      durability: "MODERATE",
+      reliability: "PROVEN",
+      price: "$45",
+      fullDescription: "The Havalon Piranta represents innovative thinking in hunting knife design. Utilizing surgical-grade replaceable scalpel blades, this system provides literally perfect sharpness for precision detail work like caping and skinning. The disposable blade concept eliminates field sharpening entirely—simply swap the blade when needed. While the thin scalpel blade can snap under improper use, the ultra-lightweight design and surgical precision make this the top choice for hunters prioritizing clean, precise cuts over heavy-duty utility.",
+      specs: [
+        { label: "Blade Type", value: "Replaceable Surgical Scalpel" },
+        { label: "Blade Material", value: "Stainless Surgical Steel" },
+        { label: "Lock Type", value: "Liner Lock" },
+        { label: "Handle Material", value: "Polymer Composite" },
+        { label: "Blade Length", value: "2.75 inches" },
+        { label: "Weight", value: "2.9 oz" }
+      ],
+      pros: [
+        "Surgical-grade sharpness provides unbeatable precision for detail work",
+        "Replaceable blade system eliminates need for field sharpening",
+        "Ultra-lightweight design reduces carry fatigue",
+        "Low initial cost with excellent value proposition",
+        "Innovative disposable blade concept maximizes convenience"
+      ],
+      cons: [
+        "Thin scalpel blade can snap under improper heavy-duty use",
+        "Requires carrying replacement blades for extended operations",
+        "Thin handles less comfortable during prolonged use compared to traditional folders"
+      ],
+      testResults: [
+        { metric: "Core Performance Efficacy", score: "9.0/10", description: "Surgical sharpness with no need to sharpen. Perfect efficacy for precision cutting tasks." },
+        { metric: "Durability & Build Quality", score: "6.0/10", description: "Lock is secure, but thin scalpel blade can snap. Trade-off for surgical precision." },
+        { metric: "Usability & Ergonomics", score: "7.0/10", description: "Super light design, but thin handles cause fatigue during extended use." },
+        { metric: "Feature Set & Innovation", score: "10.0/10", description: "Revolutionary disposable surgical blade system. Industry-leading innovation." },
+        { metric: "Value Proposition", score: "8.0/10", description: "Low initial cost with recurring blade replacement. Excellent value for precision work." }
+      ],
+      affiliateLink: "https://example.com/havalon-piranta"
+    },
     {
       id: 1,
       name: "Summit Pro Tent",
@@ -157,7 +237,7 @@ export function WeeklyFeatured() {
                 Weekly Recon
               </h2>
               <p className="text-zinc-500 text-sm uppercase tracking-wide">
-                Week of Jan 19, 2025 • Tactical Folders
+                Week of Jan 27, 2025 • Tactical Folders
               </p>
             </div>
           </motion.div>
