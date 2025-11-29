@@ -1,7 +1,6 @@
 import { Target, ArrowRight, Shield, Award } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useEffect } from "react";
-import tigerLogo from "../assets/tiger-logo.png";
 import { trackEvent } from "../lib/analytics";
 
 export function Hero() {
@@ -135,7 +134,7 @@ export function Hero() {
               >
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-full flex items-center justify-center w-[380px] h-[380px] md:w-[428px] md:h-[428px] p-8">
                   <img
-                    src={tigerLogo}
+                    src="/tiger-logo.jpg"
                     alt="Enormous Tiger Logo"
                     className="w-60 h-60 md:w-72 md:h-72 object-contain rounded-full border-4 border-orange-600/30 drop-shadow-xl"
                     style={{ backgroundClip: "padding-box" }}

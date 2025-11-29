@@ -1,5 +1,5 @@
 import { CategoryCard } from "./CategoryCard";
-import { Tent, Fish, Dumbbell, Truck, Mountain, Footprints } from "lucide-react";
+import { Tent, Fish, Dumbbell, Truck, Mountain, Footprints, Scissors } from "lucide-react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import { useRef } from "react";
@@ -61,6 +61,14 @@ export function CategoryGrid({ onCategoryClick }: CategoryGridProps) {
       icon: Footprints,
       count: 41,
       image: "https://images.unsplash.com/photo-1711466067057-d1bd10183924?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFpbCUyMHJ1bm5pbmclMjBzaG9lc3xlbnwxfHx8fDE3NjMzMzgzODR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    },
+    {
+      id: 7,
+      name: "Hunting Knives",
+      key: "hunting_knives",
+      icon: Scissors,
+      count: 4,
+      image: "/assets/knives/knife-cover.png"
     }
   ];
 

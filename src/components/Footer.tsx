@@ -1,6 +1,5 @@
 import { Target, Mail } from "lucide-react";
 import { motion } from "motion/react";
-import tigerLogo from "../assets/tiger-logo.png";
 import { trackEvent } from "../lib/analytics";
 
 export function Footer() {
@@ -18,7 +17,7 @@ export function Footer() {
               <div className="relative w-10 h-10">
                 <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-gradient-to-br from-zinc-800 to-zinc-900">
                   <img
-                    src={tigerLogo}
+                    src="/tiger-logo.jpg"
                     alt="Enormous Tiger"
                     className="w-10 h-10 object-contain p-1.5"
                   />

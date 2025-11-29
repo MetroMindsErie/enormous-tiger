@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Target, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import tigerLogo from "../assets/tiger-logo.png";
 import { trackEvent } from "../lib/analytics";
+import { useNavigate, useLocation } from "react-router-dom";
 
-interface NavigationProps {
-  onLogoClick?: () => void;
-}
-
-export function Navigation({ onLogoClick }: NavigationProps) {
+export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,21 +19,35 @@ export function Navigation({ onLogoClick }: NavigationProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Weekly Recon", href: "#weekly" },
-    { name: "Categories", href: "#categories" },
-    { name: "Mission", href: "#mission" },
-    { name: "Disclosure", href: "/disclosure" }, // ADD THIS
-    { name: "Contact", href: "#contact" }
-  ];
-
   const handleLogoClick = () => {
     trackEvent("click_logo");
-    if (onLogoClick) {
-      onLogoClick();
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const navLinks = [
+    { name: "Weekly Recon", href: "/#weekly", isHash: true },
+    { name: "Categories", href: "/#categories", isHash: true },
+    { name: "Mission", href: "/#mission", isHash: true },
+    { name: "Contact", href: "/#contact", isHash: true }
+  ];
+
+  const handleNavClick = (href: string, isHash: boolean) => {
+    if (isHash) {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.querySelector(href.substring(1));
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const element = document.querySelector(href.substring(1));
+        element?.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigate(href);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -62,7 +74,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
               {/* Tiger Logo - Rounded */}
                 <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-zinc-950">
                   <img
-                    src={tigerLogo}
+                    src="/tiger-logo.jpg"
                     alt="Enormous Tiger"
                     className="w-12 h-12 object-cover rounded-full"
                   />
@@ -84,9 +96,9 @@ export function Navigation({ onLogoClick }: NavigationProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
-              <motion.a
+              <motion.button
                 key={link.name}
-                href={link.href}
+                onClick={() => handleNavClick(link.href, link.isHash)}
                 className="text-zinc-400 hover:text-orange-600 uppercase tracking-wider text-sm transition-colors relative group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -94,7 +106,7 @@ export function Navigation({ onLogoClick }: NavigationProps) {
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
+              </motion.button>
             ))}
             <motion.button
               className="bg-orange-600 hover:bg-orange-700 text-zinc-950 px-6 py-2 uppercase text-sm tracking-wider transition-colors rounded-lg"

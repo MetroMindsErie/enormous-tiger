@@ -157,7 +157,7 @@ export function WeeklyFeatured() {
                 Weekly Recon
               </h2>
               <p className="text-zinc-500 text-sm uppercase tracking-wide">
-                Week of Nov 17, 2025 • Camping Essentials
+                Week of Jan 19, 2025 • Tactical Folders
               </p>
             </div>
           </motion.div>
