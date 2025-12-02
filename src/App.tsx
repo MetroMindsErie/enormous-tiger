@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { SessionProvider } from "./contexts/SessionContext";
 import { HomePage } from "./pages/HomePage";
 import { CategoryPage } from "./pages/CategoryPage";
+import { MethodologyPage } from "./pages/MethodologyPage";
 import { Navigation } from "./components/Navigation";
 import { GAInitializer } from "./components/GAInitializer";
 import { SEOHead } from "./components/SEOHead";
@@ -24,6 +25,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/category/:categoryKey" element={<CategoryPage />} />
+        <Route path="/methodology" element={<MethodologyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <GADebug />

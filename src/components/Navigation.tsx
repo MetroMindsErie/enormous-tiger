@@ -28,6 +28,7 @@ export function Navigation() {
   const navLinks = [
     { name: "Weekly Recon", href: "/#weekly", isHash: true },
     { name: "Categories", href: "/#categories", isHash: true },
+    { name: "Our Intel", href: "/methodology", isHash: false },
     { name: "Mission", href: "/#mission", isHash: true },
     { name: "Contact", href: "/#contact", isHash: true }
   ];

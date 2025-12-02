@@ -2,9 +2,11 @@ import { Target, ArrowRight, Shield, Award } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useEffect } from "react";
 import { trackEvent } from "../lib/analytics";
+import { useNavigate } from "react-router-dom";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -238,6 +240,10 @@ export function Hero() {
                   transition={{ duration: 0.6, delay: 1.3 }}
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    trackEvent("click_explore_intel");
+                    navigate("/methodology");
+                  }}
                 >
                   <span>Explore Our Intel</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

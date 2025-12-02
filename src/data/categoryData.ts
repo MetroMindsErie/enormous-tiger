@@ -35,8 +35,11 @@ export const categoryData: Record<string, any> = {
           "Requires practice for optimal setup efficiency"
         ],
         testResults: [
-          { metric: "Wind Resistance", score: "9.6/10", description: "Maintained structural integrity in 65mph sustained winds" },
-          { metric: "Waterproofing", score: "9.8/10", description: "Zero interior moisture after 48 hours of continuous rainfall" }
+          { metric: "Performance", score: "9.6/10", description: "Maintains structural integrity in 65mph sustained winds. Exceptional weather protection in real-world alpine conditions." },
+          { metric: "Durability & Build Quality", score: "9.2/10", description: "Aerospace aluminum frame and reinforced fabric show zero degradation after 90-day extreme weather trial." },
+          { metric: "Ease of Use & Ergonomics", score: "8.9/10", description: "3-minute average setup time. Intuitive pole system, though initial practice required for optimal efficiency." },
+          { metric: "Features & Innovation", score: "9.5/10", description: "Advanced ventilation system, integrated gear loft, and color-coded setup markers exceed competitive offerings." },
+          { metric: "Value", score: "9.2/10", description: "Premium price justified by exceptional durability and performance in mission-critical conditions." }
         ],
         affiliateLink: "https://example.com/summit-pro-tent"
       },
@@ -58,17 +61,20 @@ export const categoryData: Record<string, any> = {
           { label: "Length", value: "Regular: 6'0\"" }
         ],
         pros: [
-          "Exceptional warmth-to-weight ratio",
-          "Durable water-repellent coating",
-          "Anti-snag zipper system"
+          "Exceptional warmth-to-weight ratio for extended backcountry use",
+          "Durable water-repellent coating resists moisture",
+          "Anti-snag zipper system operates smoothly in cold conditions"
         ],
         cons: [
-          "Requires careful storage to maintain loft",
-          "Not suitable for wet conditions without bivy"
+          "Requires careful storage to maintain loft over time",
+          "Not suitable for wet conditions without waterproof bivy"
         ],
         testResults: [
-          { metric: "Thermal Efficiency", score: "9.4/10", description: "Maintained core body temperature in -25°F conditions" },
-          { metric: "Durability", score: "9.0/10", description: "No degradation after 200 compression cycles" }
+          { metric: "Performance", score: "9.4/10", description: "Maintained core body temperature in -25°F conditions during 48-hour field trial. Excellent thermal efficiency." },
+          { metric: "Durability & Build Quality", score: "9.0/10", description: "850-fill down maintains loft after 200+ compression cycles. Premium materials show minimal wear." },
+          { metric: "Ease of Use & Ergonomics", score: "8.8/10", description: "Anti-snag zipper operates smoothly. Intuitive stuff sack system. Comfortable cut allows natural sleeping position." },
+          { metric: "Features & Innovation", score: "8.7/10", description: "Draft collar and zipper baffle prevent heat loss. Integrated pillow pocket and stash pocket add convenience." },
+          { metric: "Value", score: "9.3/10", description: "Premium price delivers exceptional warmth-to-weight ratio and long-term durability for serious expeditions." }
         ],
         affiliateLink: "https://example.com/arctic-sleeping-bag"
       },
@@ -99,8 +105,11 @@ export const categoryData: Record<string, any> = {
           "Performance decreases at high altitude"
         ],
         testResults: [
-          { metric: "Heat Output", score: "9.1/10", description: "Consistent performance across temperature ranges" },
-          { metric: "Ignition Reliability", score: "8.7/10", description: "Zero failures in 5,000+ ignition tests" }
+          { metric: "Performance", score: "9.1/10", description: "Consistent performance across temperature ranges. Boils water in under 4 minutes in extreme conditions." },
+          { metric: "Durability & Build Quality", score: "8.7/10", description: "Ignition system and burner show no degradation after 5,000+ tests. High-quality materials ensure longevity." },
+          { metric: "Ease of Use & Ergonomics", score: "8.9/10", description: "Intuitive design allows for easy setup and operation. Compact form factor enhances portability." },
+          { metric: "Features & Innovation", score: "8.5/10", description: "Integrated windscreen and pot support improve efficiency. Lighter and more compact than traditional camp stoves." },
+          { metric: "Value", score: "8.8/10", description: "Affordable pricing for the performance offered. Excellent choice for budget-conscious campers." }
         ],
         affiliateLink: "https://example.com/titanfire-stove"
       },
@@ -131,8 +140,11 @@ export const categoryData: Record<string, any> = {
           "Premium price point"
         ],
         testResults: [
-          { metric: "Ice Retention", score: "9.5/10", description: "Maintained ice for 8.3 days average" },
-          { metric: "Durability", score: "9.2/10", description: "Survived bear attack simulation" }
+          { metric: "Performance", score: "9.5/10", description: "Maintained ice for 8.3 days average in 95°F heat. Exceeded 7-day claim by significant margin." },
+          { metric: "Durability & Build Quality", score: "9.2/10", description: "Survived bear attack simulation with no damage. Latches and hinges function like new after extreme testing." },
+          { metric: "Ease of Use & Ergonomics", score: "8.5/10", description: "Heavy-duty design requires two hands to open when full. Integrated handles are comfortable but placement may not suit all users." },
+          { metric: "Features & Innovation", score: "9.0/10", description: "Innovative bear-resistant design and superior insulation technology set new standard for coolers." },
+          { metric: "Value", score: "8.9/10", description: "High initial cost offset by exceptional performance and durability. Long-term investment for serious outdoor enthusiasts." }
         ],
         affiliateLink: "https://example.com/basecamp-cooler"
       },
@@ -163,8 +175,11 @@ export const categoryData: Record<string, any> = {
           "Limited color options"
         ],
         testResults: [
-          { metric: "Comfort", score: "8.8/10", description: "Minimal pressure points with 60lb load" },
-          { metric: "Durability", score: "9.1/10", description: "No failures after 500-mile test" }
+          { metric: "Performance", score: "9.0/10", description: "Load-tested to 75lbs with no failures. Retains shape and comfort even under maximum load." },
+          { metric: "Durability & Build Quality", score: "9.1/10", description: "Fabrics and stitching show no signs of wear after 500-mile test. High-quality zippers and buckles." },
+          { metric: "Ease of Use & Ergonomics", score: "8.8/10", description: "Ventilated back panel and adjustable straps significantly increase comfort on long hikes. Initial adjustment period required." },
+          { metric: "Features & Innovation", score: "8.9/10", description: "Multiple access points and integrated rain cover are highly functional. Hydration reservoir pocket is a plus." },
+          { metric: "Value", score: "8.7/10", description: "Mid-range pricing for a feature-rich, durable backpack. Excellent choice for serious hikers." }
         ],
         affiliateLink: "https://example.com/trailblazer-backpack"
       },
@@ -195,8 +210,11 @@ export const categoryData: Record<string, any> = {
           "No battery indicator"
         ],
         testResults: [
-          { metric: "Brightness", score: "9.0/10", description: "Measured 1180 lumens peak output" },
-          { metric: "Runtime", score: "8.5/10", description: "Exceeded 100 hours on low setting" }
+          { metric: "Performance", score: "9.0/10", description: "Measured 1180 lumens peak output. Consistent performance in all weather conditions." },
+          { metric: "Durability & Build Quality", score: "8.5/10", description: "Waterproof to 3 meters and survives 2-meter drop tests. High-quality materials ensure longevity." },
+          { metric: "Ease of Use & Ergonomics", score: "9.2/10", description: "Comfortable headband and intuitive controls. Lightweight design reduces fatigue." },
+          { metric: "Features & Innovation", score: "8.8/10", description: "Red light mode and multiple brightness settings are highly functional. Waterproof design is a major plus." },
+          { metric: "Value", score: "8.7/10", description: "Affordable pricing for the performance offered. Excellent choice for budget-conscious campers." }
         ],
         affiliateLink: "https://example.com/nightfall-headlamp"
       }
@@ -235,8 +253,11 @@ export const categoryData: Record<string, any> = {
           "Requires quality reel"
         ],
         testResults: [
-          { metric: "Cast Accuracy", score: "9.3/10", description: "2-foot radius at 50 yards" },
-          { metric: "Sensitivity", score: "9.5/10", description: "Detected 0.5oz contact in 15ft depth" }
+          { metric: "Performance", score: "9.5/10", description: "Exceptional sensitivity detects 0.5oz bottom contact in 15ft depth. Consistently places casts within 2-foot radius at 50 yards." },
+          { metric: "Durability & Build Quality", score: "8.8/10", description: "Military-grade carbon fiber shows zero structural failures across 15,000-cast torture test. Premium hardware construction." },
+          { metric: "Ease of Use & Ergonomics", score: "9.2/10", description: "Lightweight 5.8oz design reduces fatigue. Balanced feel enables all-day casting without wrist strain." },
+          { metric: "Features & Innovation", score: "9.0/10", description: "Titanium oxide guides and carbon fiber composite exceed competitive rods. Corrosion-resistant saltwater hardware." },
+          { metric: "Value", score: "8.6/10", description: "Premium pricing justified by professional-grade performance and 10-year structural warranty." }
         ],
         affiliateLink: "https://example.com/tacticast-pro"
       },
@@ -267,8 +288,11 @@ export const categoryData: Record<string, any> = {
           "Premium pricing"
         ],
         testResults: [
-          { metric: "Drag Performance", score: "9.2/10", description: "Consistent across entire drag range" },
-          { metric: "Corrosion Resistance", score: "9.4/10", description: "Zero oxidation after 6 months saltwater" }
+          { metric: "Performance", score: "9.3/10", description: "Consistent drag performance across entire range. Smooth operation under heavy loads." },
+          { metric: "Durability & Build Quality", score: "9.4/10", description: "Sealed construction shows zero corrosion after 6 months in saltwater. High-quality materials ensure longevity." },
+          { metric: "Ease of Use & Ergonomics", score: "8.9/10", description: "Comfortable handle and intuitive drag adjustment. Slightly heavier than comparable reels." },
+          { metric: "Features & Innovation", score: "9.0/10", description: "Innovative sealed drag system and corrosion-resistant materials set new standard for spinning reels." },
+          { metric: "Value", score: "8.8/10", description: "Premium pricing justified by exceptional performance and durability. Long-term investment for serious anglers." }
         ],
         affiliateLink: "https://example.com/ironclad-reel"
       }
@@ -307,8 +331,11 @@ export const categoryData: Record<string, any> = {
           "Heavier than traditional dumbbells"
         ],
         testResults: [
-          { metric: "Mechanism Durability", score: "9.5/10", description: "Zero failures in 50,000 cycles" },
-          { metric: "Balance", score: "9.1/10", description: "Weight distribution within 2% tolerance" }
+          { metric: "Performance", score: "9.5/10", description: "Smooth weight changes enable efficient workout transitions. Balanced weight distribution across entire 5-90lb range." },
+          { metric: "Durability & Build Quality", score: "9.6/10", description: "Zero mechanical failures across 50,000 adjustment cycles. Premium materials maintain precision over time." },
+          { metric: "Ease of Use & Ergonomics", score: "9.0/10", description: "Intuitive dial system enables weight changes in under 3 seconds. Comfortable grip at all weight settings." },
+          { metric: "Features & Innovation", score: "9.2/10", description: "Space-efficient design replaces 17 pairs of dumbbells. Innovative adjustment mechanism superior to competitors." },
+          { metric: "Value", score: "9.0/10", description: "High initial cost offset by space savings and elimination of 17-dumbbell-set purchase. 10-year warranty." }
         ],
         affiliateLink: "https://example.com/powerstation-dumbbells"
       }
@@ -347,8 +374,11 @@ export const categoryData: Record<string, any> = {
           "Heavy unit"
         ],
         testResults: [
-          { metric: "Pull Power", score: "9.4/10", description: "Exceeded rated capacity by 8%" },
-          { metric: "Waterproofing", score: "9.0/10", description: "Functioned after 1-hour submersion" }
+          { metric: "Performance", score: "9.4/10", description: "Exceeded rated 12,000lb capacity by 8% during load testing. Consistent pulling power across varying conditions." },
+          { metric: "Durability & Build Quality", score: "9.5/10", description: "IP68 waterproof motor functioned after 1-hour submersion. Synthetic rope maintains strength after extreme use." },
+          { metric: "Ease of Use & Ergonomics", score: "8.2/10", description: "Wireless remote enables safe operation. Installation requires professional assistance for optimal setup." },
+          { metric: "Features & Innovation", score: "9.0/10", description: "Waterproof motor and synthetic rope exceed steel cable systems. Thermal protection prevents overheating." },
+          { metric: "Value", score: "9.0/10", description: "Premium pricing justified by IP68 waterproofing and synthetic rope safety features for backcountry recovery." }
         ],
         affiliateLink: "https://example.com/allterrain-winch"
       }
@@ -387,8 +417,11 @@ export const categoryData: Record<string, any> = {
           "Premium price"
         ],
         testResults: [
-          { metric: "Accuracy", score: "9.1/10", description: "GPS within 3m average" },
-          { metric: "Durability", score: "8.9/10", description: "Survived 10m drop test" }
+          { metric: "Performance", score: "9.1/10", description: "GPS accuracy within 3m average. Altimeter, barometer, and compass provide reliable navigation data across terrain." },
+          { metric: "Durability & Build Quality", score: "9.3/10", description: "Survived 10m drop test without damage. 200m water resistance verified. Solar charging maintains indefinite operation." },
+          { metric: "Ease of Use & Ergonomics", score: "7.8/10", description: "Complex interface requires learning curve. Menu system deep but logical once mastered. Readable display in all conditions." },
+          { metric: "Features & Innovation", score: "9.5/10", description: "Solar charging eliminates battery concerns. ABC sensors + GPS exceed competitive watches. Track-back navigation invaluable." },
+          { metric: "Value", score: "8.8/10", description: "Premium price delivers professional-grade navigation tools and solar independence for extended expeditions." }
         ],
         affiliateLink: "https://example.com/tactical-watch"
       }
@@ -427,8 +460,11 @@ export const categoryData: Record<string, any> = {
           "Aggressive tread wears on pavement"
         ],
         testResults: [
-          { metric: "Traction", score: "9.4/10", description: "Zero slips on wet rocks" },
-          { metric: "Comfort", score: "8.9/10", description: "No blisters across 6 testers" }
+          { metric: "Performance", score: "9.4/10", description: "Exceptional traction on wet rocks and loose terrain. Zero slips recorded across 6 testers over 500 miles of technical trails." },
+          { metric: "Durability & Build Quality", score: "8.5/10", description: "Upper integrity maintained after 500 miles. Tread showed 30% wear at test completion, indicating good longevity." },
+          { metric: "Ease of Use & Ergonomics", score: "9.2/10", description: "No break-in period required. Zero blisters or hot spots across all testers. Wide toe box accommodates natural foot splay." },
+          { metric: "Features & Innovation", score: "8.4/10", description: "Responsive cushioning and aggressive tread pattern. Breathable mesh superior to waterproof alternatives for most conditions." },
+          { metric: "Value", score: "9.0/10", description: "Mid-range pricing delivers professional-grade performance and comfort for serious trail runners." }
         ],
         affiliateLink: "https://example.com/endurance-trail-runner"
       }
@@ -472,11 +508,11 @@ export const categoryData: Record<string, any> = {
           "Premium features may be unnecessary for casual users"
         ],
         testResults: [
-          { metric: "Core Performance Efficacy", score: "9.0/10", description: "Premium stainless steel with excellent skinning geometry. Superior edge retention through field-dressing tasks." },
-          { metric: "Durability & Build Quality", score: "8.5/10", description: "G10/Micarta handles with exceptional AXIS lock strength. Near-fixed-blade reliability." },
-          { metric: "Usability & Ergonomics", score: "9.0/10", description: "Ambidextrous, fast one-handed opening/closing. Major safety advantage in field operations." },
-          { metric: "Feature Set & Innovation", score: "9.0/10", description: "Advanced steel options and superior handle materials. Industry-leading lock technology." },
-          { metric: "Value Proposition", score: "7.0/10", description: "High initial cost justified by excellent lifetime value and durability." }
+          { metric: "Performance", score: "9.0/10", description: "S30V steel delivers exceptional edge retention through extended field-dressing operations. Superior cutting geometry for skinning tasks." },
+          { metric: "Durability & Build Quality", score: "8.5/10", description: "AXIS lock provides near-fixed-blade strength. G10/Micarta handles maintain grip in wet/bloody conditions. Premium construction throughout." },
+          { metric: "Ease of Use & Ergonomics", score: "9.0/10", description: "Ambidextrous one-handed operation critical for field safety. Fast deployment and closure. Comfortable grip during extended use." },
+          { metric: "Features & Innovation", score: "9.0/10", description: "Industry-leading AXIS lock technology. Premium steel options and handle materials exceed competitive folders at this price point." },
+          { metric: "Value", score: "7.0/10", description: "Premium pricing justified for serious hunters requiring fixed-blade reliability in folder format. Excellent lifetime durability." }
         ],
         affiliateLink: "https://example.com/benchmade-north-fork"
       },
@@ -512,11 +548,11 @@ export const categoryData: Record<string, any> = {
           "Focus on lock strength over modern convenience features"
         ],
         testResults: [
-          { metric: "Core Performance Efficacy", score: "8.0/10", description: "Thick, heavy-duty D2 blade excels at robust cutting. Superior for heavy-duty field tasks." },
-          { metric: "Durability & Build Quality", score: "9.5/10", description: "Industry-leading Tri-Ad Lock strength. Extreme resistance to catastrophic failure." },
-          { metric: "Usability & Ergonomics", score: "6.0/10", description: "Lock is stiff, often requires two hands to disengage. Reduces field convenience." },
-          { metric: "Feature Set & Innovation", score: "7.0/10", description: "Focus on lock strength over modern features. Proven design prioritizes reliability." },
-          { metric: "Value Proposition", score: "8.0/10", description: "Maximum toughness at mid-high price point. Excellent for demanding applications." }
+          { metric: "Performance", score: "8.0/10", description: "Thick D2 blade excels at robust cutting tasks. Superior for heavy-duty field work typically requiring fixed blades." },
+          { metric: "Durability & Build Quality", score: "9.5/10", description: "Industry-leading Tri-Ad Lock provides strongest folding mechanism available. Extreme resistance to catastrophic failure under spine pressure." },
+          { metric: "Ease of Use & Ergonomics", score: "6.0/10", description: "Stiff lock often requires two hands to disengage. Heavier weight reduces convenience during extended carry." },
+          { metric: "Features & Innovation", score: "7.0/10", description: "Focus on maximum lock strength over modern convenience features. Proven design prioritizes reliability above all else." },
+          { metric: "Value", score: "8.0/10", description: "Mid-high pricing delivers maximum toughness for demanding applications requiring absolute lock reliability." }
         ],
         affiliateLink: "https://example.com/cold-steel-ad10"
       },
@@ -552,11 +588,11 @@ export const categoryData: Record<string, any> = {
           "Traditional wood handles less grippy than G10 in wet conditions"
         ],
         testResults: [
-          { metric: "Core Performance Efficacy", score: "7.0/10", description: "Reliable 420HC steel with good geometry. Consistent cutting performance for the price point." },
-          { metric: "Durability & Build Quality", score: "8.0/10", description: "Legendary lockback mechanism. Heavy and solid construction proven over decades." },
-          { metric: "Usability & Ergonomics", score: "7.0/10", description: "Requires two hands to close. Classic shape is comfortable but lacks modern convenience." },
-          { metric: "Feature Set & Innovation", score: "5.0/10", description: "Timeless design with few modern features. Proven reliability over innovation." },
-          { metric: "Value Proposition", score: "9.0/10", description: "Exceptional entry-level value and reliability. Best bang-for-buck in category." }
+          { metric: "Performance", score: "7.0/10", description: "Reliable 420HC steel with good cutting geometry. Consistent performance for general hunting tasks at entry-level price point." },
+          { metric: "Durability & Build Quality", score: "8.0/10", description: "Legendary lockback mechanism proven over decades. Heavy and solid construction inspires confidence despite dated design." },
+          { metric: "Ease of Use & Ergonomics", score: "7.0/10", description: "Requires two hands to close safely. Classic shape is comfortable but lacks modern convenience." },
+          { metric: "Features & Innovation", score: "5.0/10", description: "Timeless design with few modern features. Proven reliability prioritized over innovation or convenience enhancements." },
+          { metric: "Value", score: "9.0/10", description: "Exceptional entry-level value. Best bang-for-buck introduces new hunters to quality folders at minimal investment." }
         ],
         affiliateLink: "https://example.com/buck-110"
       },
@@ -592,11 +628,11 @@ export const categoryData: Record<string, any> = {
           "Thin handles less comfortable during prolonged use compared to traditional folders"
         ],
         testResults: [
-          { metric: "Core Performance Efficacy", score: "9.0/10", description: "Surgical sharpness with no need to sharpen. Perfect efficacy for precision cutting tasks." },
-          { metric: "Durability & Build Quality", score: "6.0/10", description: "Lock is secure, but thin scalpel blade can snap. Trade-off for surgical precision." },
-          { metric: "Usability & Ergonomics", score: "7.0/10", description: "Super light design, but thin handles cause fatigue during extended use." },
-          { metric: "Feature Set & Innovation", score: "10.0/10", description: "Revolutionary disposable surgical blade system. Industry-leading innovation." },
-          { metric: "Value Proposition", score: "8.0/10", description: "Low initial cost with recurring blade replacement. Excellent value for precision work." }
+          { metric: "Performance", score: "9.0/10", description: "Surgical-grade sharpness unmatched for precision skinning and caping. Perfect efficacy for detail work with no field sharpening needed." },
+          { metric: "Durability & Build Quality", score: "6.0/10", description: "Liner lock secure but thin scalpel blade can snap under improper heavy-duty use. Intentional trade-off for surgical precision." },
+          { metric: "Ease of Use & Ergonomics", score: "7.0/10", description: "Ultra-light design but thin handles cause fatigue during prolonged skinning. Blade replacement system simple but requires carrying spares." },
+          { metric: "Features & Innovation", score: "10.0/10", description: "Revolutionary disposable surgical blade system eliminates sharpening entirely. Industry-leading innovation for precision hunters." },
+          { metric: "Value", score: "8.0/10", description: "Low initial cost with recurring blade expenses. Excellent value for hunters prioritizing surgical precision over heavy-duty utility." }
         ],
         affiliateLink: "https://example.com/havalon-piranta"
       }

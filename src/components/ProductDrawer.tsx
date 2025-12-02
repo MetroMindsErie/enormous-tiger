@@ -179,31 +179,57 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
               <p className="text-zinc-300 leading-relaxed">{product.fullDescription}</p>
             </motion.div>
 
-            {/* Test Results */}
+            {/* Test Results - Now 5 Core Metrics */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              <h3 className="text-zinc-100 uppercase tracking-wider mb-3">
-                Performance Metrics
-              </h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-zinc-100 uppercase tracking-wider">
+                  5-Metric Analysis
+                </h3>
+                <button
+                  onClick={() => {
+                    trackEvent("click_methodology_link", { product_id: product.id });
+                    window.location.href = "/methodology";
+                  }}
+                  className="text-orange-600 hover:text-orange-500 text-xs uppercase tracking-wider transition-colors"
+                >
+                  View Methodology →
+                </button>
+              </div>
               <div className="h-1 w-20 bg-orange-600 mb-4"></div>
               <div className="space-y-4">
-                {product.testResults.map((test, index) => (
-                  <div
-                    key={index}
-                    className="bg-zinc-800/30 border-l-4 border-orange-600 p-4"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-zinc-100 uppercase tracking-wide text-sm">
-                        {test.metric}
-                      </span>
-                      <span className="text-orange-600">{test.score}</span>
+                {product.testResults.map((test, index) => {
+                  const scoreNum = parseFloat(test.score);
+                  const scoreColor = scoreNum >= 9.0 ? "text-green-500" : scoreNum >= 7.0 ? "text-orange-600" : "text-red-500";
+                  const barColor = scoreNum >= 9.0 ? "bg-green-500" : scoreNum >= 7.0 ? "bg-orange-600" : "bg-red-500";
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="bg-zinc-800/30 border border-zinc-800 p-4 rounded-lg"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-zinc-100 uppercase tracking-wide text-sm font-semibold">
+                          {test.metric}
+                        </span>
+                        <span className={`${scoreColor} text-lg`}>{test.score}</span>
+                      </div>
+                      {/* Visual Score Bar */}
+                      <div className="w-full bg-zinc-700 h-2 rounded-full mb-3 overflow-hidden">
+                        <motion.div
+                          className={`h-full ${barColor}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${scoreNum * 10}%` }}
+                          transition={{ duration: 0.8, delay: index * 0.1 }}
+                        />
+                      </div>
+                      <p className="text-zinc-400 text-sm leading-relaxed">{test.description}</p>
                     </div>
-                    <p className="text-zinc-400 text-sm">{test.description}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
 
