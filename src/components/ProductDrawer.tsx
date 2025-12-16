@@ -187,7 +187,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-zinc-100 uppercase tracking-wider">
-                  5-Metric Analysis
+                  5-Metric Assessment
                 </h3>
                 <button
                   onClick={() => {

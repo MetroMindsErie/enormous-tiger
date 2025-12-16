@@ -1,98 +1,142 @@
-import { Target, Mail } from "lucide-react";
+import { Target } from "lucide-react";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
 
 export function Footer() {
+  const navigate = useNavigate();
+
+  const footerLinks = {
+    company: [
+      { name: "About Us", href: "/#mission" },
+      { name: "Our Methodology", href: "/methodology" },
+      { name: "Contact", href: "/#contact" }
+    ],
+    categories: [
+      { name: "Hunting Knives", href: "/category/hunting_knives" },
+      { name: "Regional Intelligence", href: "/#regional" }
+    ],
+    legal: [
+      { name: "Privacy Policy", href: "#" },
+      { name: "Terms of Service", href: "#" },
+      { name: "Affiliate Disclosure", href: "#" }
+    ]
+  };
+
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith("/#")) {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.querySelector(href.substring(1));
+        element?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else if (href.startsWith("#")) {
+      // Handle placeholder links
+      trackEvent("click_footer_link", { href });
+    } else {
+      navigate(href);
+    }
+  };
+
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-800 py-12" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+    <footer className="bg-zinc-950 border-t border-zinc-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
+          <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10">
-                <div className="relative rounded-full overflow-hidden shadow-lg shadow-orange-600/20 border-2 border-orange-600/30 bg-gradient-to-br from-zinc-800 to-zinc-900">
-                  <img
-                    src="/tiger-logo.jpg"
-                    alt="Enormous Tiger"
-                    className="w-10 h-10 object-contain p-1.5"
-                  />
-                </div>
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center -z-10"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                >
-                  <Target className="w-12 h-12 text-orange-600/20" strokeWidth={1} />
-                </motion.div>
-              </div>
-              <span className="text-zinc-100 uppercase tracking-wider">Enormous Tiger</span>
+              <Target className="w-8 h-8 text-orange-600" />
+              <span className="text-zinc-100 uppercase tracking-wider font-bold">
+                Enormous Tiger
+              </span>
             </div>
             <p className="text-zinc-500 text-sm leading-relaxed">
-              Precision product evaluation backed by 30+ years of military and emergency response experience.
+              Mission-Critical Product Intelligence derived from 30+ years of military and emergency response operations.
             </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h4 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">Categories</h4>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h3 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">
+              Company
+            </h3>
             <ul className="space-y-2">
-              {["Camping", "Fishing", "Workout", "Trucks", "Running"].map((item, index) => (
-                <motion.li
-                  key={item}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <a href="#" className="text-zinc-500 hover:text-orange-600 text-sm transition-colors">{item}</a>
-                </motion.li>
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    className="text-zinc-400 hover:text-orange-600 text-sm transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                </li>
               ))}
             </ul>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h4 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">Contact</h4>
-            <div className="flex items-center gap-2 text-zinc-500 text-sm mb-4">
-              <Mail className="w-4 h-4 text-orange-600" />
-              <a
-                href="mailto:info@enormoustiger.com"
-                className="hover:text-orange-600 transition-colors"
-                onClick={() => trackEvent("click_contact_email")}
-              >
-                info@enormoustiger.com
-              </a>
-            </div>
-            <p className="text-zinc-600 text-xs uppercase tracking-wide">
-              Field-tested. Mission-proven. Data-driven.
-            </p>
-          </motion.div>
+          </div>
+
+          {/* Categories */}
+          <div>
+            <h3 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">
+              Categories
+            </h3>
+            <ul className="space-y-2">
+              {footerLinks.categories.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    className="text-zinc-400 hover:text-orange-600 text-sm transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-zinc-100 uppercase tracking-wider text-sm mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-2">
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    className="text-zinc-400 hover:text-orange-600 text-sm transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        
-        <motion.div
-          className="pt-8 border-t border-zinc-800"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <p className="text-zinc-600 text-sm text-center">
-            © 2025 Enormous Tiger. All rights reserved. | Operational since 1995
+
+        {/* Bottom Bar */}
+        <div className="border-t border-zinc-800 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-zinc-500 text-sm">
+              © {new Date().getFullYear()} Enormous Tiger. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2">
+              <div className="h-1 w-12 bg-orange-600"></div>
+              <p className="text-zinc-500 text-xs uppercase tracking-wider">
+                Only Vetted Products Make The Cut
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Affiliate Disclaimer */}
+        <div className="mt-6 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+          <p className="text-zinc-500 text-xs leading-relaxed text-center">
+            <span className="text-orange-600 uppercase tracking-wide">Affiliate Disclosure:</span> Enormous Tiger 
+            participates in affiliate programs. When you purchase through our assessed product links, we may earn 
+            a commission at no additional cost to you. This supports our mission to provide independent, field-tested 
+            product intelligence. Our assessments remain unbiased and based solely on operational performance.
           </p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

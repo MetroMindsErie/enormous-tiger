@@ -183,7 +183,7 @@ export function Hero() {
                   <Shield className="w-5 h-5 text-orange-600" />
                   <span className="text-orange-600 text-2xl">500+</span>
                 </div>
-                <p className="text-zinc-400 text-sm uppercase tracking-wide">Products Tested</p>
+                <p className="text-zinc-400 text-sm uppercase tracking-wide">Products Assessed</p>
               </div>
             </motion.div>
           </motion.div>
@@ -221,7 +221,7 @@ export function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 1.1 }}
                 >
-                  Enormous Tiger delivers market research and product recommendations with the precision of a mission-critical operation. Leveraging over thirty years of experience in high-stakes military and emergency response, Enormous Tiger applies a unique, uncompromising standard to evaluating products and services.
+                  Our approach involves a precise and systematic evaluation of every product, a methodology built on a foundation of more than 30 years of accumulated knowledge derived from the intense operational requirements of military and emergency response.
                 </motion.p>
                 
                 <motion.p
