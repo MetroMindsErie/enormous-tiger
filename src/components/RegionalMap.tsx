@@ -1,13 +1,18 @@
 import { motion } from "motion/react";
-import { useState } from "react";
-import { Snowflake, Sun, Droplets, Wind, MapPin } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Droplets, MapPin, Snowflake, Sun, Wind } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
+import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
+import * as L from "leaflet";
+import { feature as topojsonFeature } from "topojson-client";
+import statesTopo from "us-atlas/states-10m.json";
+
+type RegionId = "northern" | "southern" | "atlantic" | "midwest";
 
 interface Region {
-  id: string;
+  id: RegionId;
   name: string;
   icon: any;
-  color: string;
   description: string;
   conditions: string[];
   comingSoon?: boolean;
@@ -18,7 +23,6 @@ const regions: Region[] = [
     id: "northern",
     name: "Northern US",
     icon: Snowflake,
-    color: "from-blue-600 to-cyan-600",
     description: "Arctic & Sub-Arctic Operations",
     conditions: ["Extreme cold (-40°F)", "Heavy snow", "Ice conditions", "Short daylight hours"],
     comingSoon: true
@@ -27,7 +31,6 @@ const regions: Region[] = [
     id: "southern",
     name: "Southern US",
     icon: Sun,
-    color: "from-orange-600 to-yellow-600",
     description: "High-Heat Desert Operations",
     conditions: ["Extreme heat (110°F+)", "Low humidity", "Intense UV", "Minimal shade"],
     comingSoon: true
@@ -36,7 +39,6 @@ const regions: Region[] = [
     id: "atlantic",
     name: "Atlantic/Caribbean",
     icon: Droplets,
-    color: "from-teal-600 to-blue-600",
     description: "Humid Tropical Environments",
     conditions: ["High humidity (80%+)", "Heavy rainfall", "Salt exposure", "Tropical storms"],
     comingSoon: true
@@ -45,18 +47,150 @@ const regions: Region[] = [
     id: "midwest",
     name: "Midwest/Plains",
     icon: Wind,
-    color: "from-amber-600 to-orange-600",
     description: "Variable Continental Climate",
     conditions: ["Extreme temperature swings", "High winds", "Tornadic activity", "Rapid weather changes"],
     comingSoon: true
   }
 ];
 
+// Grouping is based on operational climate bands; it’s a deliberate simplification.
+const REGION_BY_STATE_NAME: Record<string, RegionId> = {
+  Alabama: "southern",
+  Alaska: "northern",
+  Arizona: "southern",
+  Arkansas: "southern",
+  California: "southern",
+  Colorado: "midwest",
+  Connecticut: "atlantic",
+  Delaware: "atlantic",
+  Florida: "atlantic",
+  Georgia: "atlantic",
+  Hawaii: "atlantic",
+  Idaho: "northern",
+  Illinois: "midwest",
+  Indiana: "midwest",
+  Iowa: "midwest",
+  Kansas: "midwest",
+  Kentucky: "southern",
+  Louisiana: "southern",
+  Maine: "northern",
+  Maryland: "atlantic",
+  Massachusetts: "atlantic",
+  Michigan: "northern",
+  Minnesota: "northern",
+  Mississippi: "southern",
+  Missouri: "midwest",
+  Montana: "northern",
+  Nebraska: "midwest",
+  Nevada: "southern",
+  "New Hampshire": "northern",
+  "New Jersey": "atlantic",
+  "New Mexico": "southern",
+  "New York": "northern",
+  "North Carolina": "atlantic",
+  "North Dakota": "northern",
+  Ohio: "midwest",
+  Oklahoma: "southern",
+  Oregon: "northern",
+  Pennsylvania: "northern",
+  "Rhode Island": "atlantic",
+  "South Carolina": "atlantic",
+  "South Dakota": "midwest",
+  Tennessee: "southern",
+  Texas: "southern",
+  Utah: "midwest",
+  Vermont: "northern",
+  Virginia: "atlantic",
+  Washington: "northern",
+  "West Virginia": "midwest",
+  Wisconsin: "northern",
+  Wyoming: "midwest"
+};
+
+type StateFeature = GeoJSON.Feature<GeoJSON.Geometry, { name?: string; regionId?: RegionId }>;
+
+// Contiguous US bounds (approx). Used to keep the UX focused on the US.
+const CONUS_BOUNDS: [L.LatLngTuple, L.LatLngTuple] = [
+  [24.396308, -124.848974], // south-west
+  [49.384358, -66.885444] // north-east
+];
+
+function getStateName(feature: StateFeature): string | undefined {
+  return (feature.properties?.name ?? (feature.properties as any)?.NAME) as string | undefined;
+}
+
+function FitToScope({
+  allStates,
+  selectedStates
+}: {
+  allStates: GeoJSON.FeatureCollection;
+  selectedStates: GeoJSON.FeatureCollection;
+}) {
+  const map = useMap();
+
+  useEffect(() => {
+    const target = selectedStates.features.length > 0 ? selectedStates : allStates;
+    let bounds: L.LatLngBounds;
+    try {
+      bounds = L.geoJSON(target as any).getBounds();
+      if (!bounds.isValid()) {
+        bounds = L.latLngBounds(CONUS_BOUNDS[0], CONUS_BOUNDS[1]);
+      }
+    } catch {
+      bounds = L.latLngBounds(CONUS_BOUNDS[0], CONUS_BOUNDS[1]);
+    }
+    // Smaller padding + higher maxZoom makes the map feel more "zoomed in".
+    map.fitBounds(bounds, {
+      padding: [16, 16],
+      maxZoom: selectedStates.features.length > 0 ? 7 : 5,
+      animate: true
+    });
+  }, [allStates, selectedStates, map]);
+
+  return null;
+}
+
 export function RegionalMap() {
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<RegionId | null>(null);
+
+  const allStates = useMemo(() => {
+    const topo: any = statesTopo as any;
+    const statesObject = topo.objects?.states;
+    const fc = topojsonFeature(topo, statesObject) as any;
+
+    // Attach regionId to each state feature.
+    for (const f of fc.features as StateFeature[]) {
+      const name = getStateName(f);
+      const regionId = name ? REGION_BY_STATE_NAME[name] : undefined;
+      (f.properties ??= {}).regionId = regionId;
+    }
+
+    // Keep the map focused on the contiguous US for now.
+    // Alaska and Hawaii are the primary cause of “zooming all the way out”.
+    fc.features = (fc.features as StateFeature[]).filter((f) => {
+      const name = getStateName(f);
+      return name !== "Alaska" && name !== "Hawaii";
+    });
+
+    return fc as GeoJSON.FeatureCollection;
+  }, []);
+
+  const usBounds = useMemo(() => L.latLngBounds(CONUS_BOUNDS[0], CONUS_BOUNDS[1]), []);
+
+  const selectedStates = useMemo(() => {
+    if (!selectedRegion) {
+      return { type: "FeatureCollection", features: [] } as GeoJSON.FeatureCollection;
+    }
+    return {
+      type: "FeatureCollection",
+      features: (allStates.features as StateFeature[]).filter(
+        (f) => f.properties?.regionId === selectedRegion
+      )
+    } as GeoJSON.FeatureCollection;
+  }, [allStates, selectedRegion]);
 
   const handleRegionSelect = (regionId: string) => {
-    setSelectedRegion(regionId);
+    setSelectedRegion(regionId as RegionId);
     trackEvent("select_region", { region: regionId });
   };
 
@@ -83,61 +217,62 @@ export function RegionalMap() {
           </p>
         </motion.div>
 
-        {/* Regional Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {regions.map((region, index) => {
-            const Icon = region.icon;
-            const isSelected = selectedRegion === region.id;
-            
-            return (
-              <motion.div
-                key={region.id}
-                className={`relative bg-zinc-900 border-2 cursor-pointer transition-all duration-300 rounded-lg overflow-hidden ${
-                  isSelected 
-                    ? "border-orange-600 shadow-lg shadow-orange-600/20" 
-                    : "border-zinc-800 hover:border-orange-600/50"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                onClick={() => handleRegionSelect(region.id)}
-              >
-                {/* Coming Soon Badge */}
-                {region.comingSoon && (
-                  <div className="absolute top-3 right-3 bg-orange-600 text-zinc-950 px-3 py-1 text-xs uppercase tracking-wider rounded-full z-10">
-                    Coming Soon
-                  </div>
-                )}
+        {/* OpenStreetMap Regional View */}
+        <motion.div
+          className="mb-12 bg-zinc-900/50 border border-zinc-800 rounded-lg overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="p-6 border-b border-zinc-800">
+            <p className="text-zinc-400 text-sm">
+              Select a region on the map to view scope and operational conditions.
+            </p>
+          </div>
 
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${region.color} opacity-10`}></div>
-                
-                <div className="relative p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`bg-gradient-to-br ${region.color} p-3 rounded-lg`}>
-                      <Icon className="w-6 h-6 text-zinc-950" />
-                    </div>
-                    <h3 className="text-zinc-100 text-lg uppercase tracking-wide">
-                      {region.name}
-                    </h3>
-                  </div>
-                  
-                  <p className="text-zinc-400 text-sm mb-4">{region.description}</p>
-                  
-                  <div className="space-y-2">
-                    {region.conditions.slice(0, 2).map((condition, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-zinc-500">
-                        <div className="w-1 h-1 bg-orange-600 rounded-full"></div>
-                        <span>{condition}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+          <div className="relative et-leaflet-dark">
+            <MapContainer
+              className="w-full"
+              style={{ height: 420, width: "100%" }}
+              center={[39, -98]}
+              zoom={5}
+              zoomControl
+              scrollWheelZoom={false}
+              minZoom={4}
+              maxBounds={usBounds as any}
+              maxBoundsViscosity={0.8}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+
+              <FitToScope allStates={allStates} selectedStates={selectedStates} />
+
+              <GeoJSON
+                data={allStates as any}
+                style={(feature) => {
+                  const stateRegion = (feature?.properties as any)?.regionId as RegionId | undefined;
+                  const isSelected = !!stateRegion && selectedRegion === stateRegion;
+                  return {
+                    color: "var(--chart-3)",
+                    weight: isSelected ? 3 : 2,
+                    opacity: isSelected ? 0.95 : 0.25,
+                    fillColor: "var(--chart-3)",
+                    fillOpacity: isSelected ? 0.22 : 0.04
+                  };
+                }}
+                eventHandlers={{
+                  click: (event) => {
+                    const regionId = (event?.layer as any)?.feature?.properties?.regionId as RegionId | undefined;
+                    if (!regionId) return;
+                    handleRegionSelect(regionId);
+                  }
+                }}
+              />
+            </MapContainer>
+          </div>
+        </motion.div>
 
         {/* Selected Region Details */}
         {selectedData && (
@@ -148,7 +283,7 @@ export function RegionalMap() {
             transition={{ duration: 0.4 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className={`bg-gradient-to-br ${selectedData.color} p-4 rounded-lg`}>
+              <div className="bg-orange-600 p-4 rounded-lg">
                 <selectedData.icon className="w-8 h-8 text-zinc-950" />
               </div>
               <div>
