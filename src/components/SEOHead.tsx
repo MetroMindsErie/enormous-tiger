@@ -17,7 +17,7 @@ export function SEOHead({ selectedCategory, categoryData }: SEOHeadProps) {
       ? cat.description
       : "Actionable, field-tested product intelligence derived from 30+ years of military and emergency response operations.";
     const url = window.location.href;
-    const ogImage = cat?.products?.[0]?.image || "https://your-domain.com/og-image.jpg"; // Add a default OG image
+    const ogImage = cat?.products?.[0]?.image || window.location.origin + "/tiger-logo.jpg";
     const siteName = "Enormous Tiger";
     
     const tags: { tag: string; attrs: Record<string,string> }[] = [
@@ -76,7 +76,7 @@ export function SEOHead({ selectedCategory, categoryData }: SEOHeadProps) {
         url: window.location.origin,
         logo: {
           "@type": "ImageObject",
-          url: window.location.origin + "/logo.png"
+          url: window.location.origin + "/tiger-logo.jpg"
         },
         sameAs: [
           // Add your social media URLs here when available
