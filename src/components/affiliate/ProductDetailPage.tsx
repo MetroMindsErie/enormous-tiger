@@ -70,11 +70,11 @@ export function ProductDetailPage({ product, onBack }: ProductDetailPageProps) {
           <div className="lg:col-span-2 space-y-8">
             {/* Image Gallery */}
             <div>
-              <div className="aspect-video bg-zinc-900 rounded-lg overflow-hidden mb-4">
+              <div className="aspect-video bg-zinc-900 rounded-lg overflow-hidden mb-4 flex items-center justify-center p-4">
                 <ImageWithFallback
                   src={product.images[selectedImage]}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="grid grid-cols-4 gap-2">
@@ -86,7 +86,9 @@ export function ProductDetailPage({ product, onBack }: ProductDetailPageProps) {
                       selectedImage === idx ? 'border-orange-600' : 'border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
-                    <ImageWithFallback src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                    <div className="w-full h-full flex items-center justify-center p-1">
+                      <ImageWithFallback src={img} alt={`View ${idx + 1}`} className="w-full h-full object-contain" />
+                    </div>
                   </button>
                 ))}
               </div>

@@ -93,7 +93,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
           <div className="p-6 space-y-8">
             {/* Hero Image */}
             <motion.div
-              className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-800"
+              className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-800 flex items-center justify-center p-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
@@ -101,7 +101,7 @@ export function ProductDrawer({ product, open, onClose }: ProductDrawerProps) {
               <ImageWithFallback
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </motion.div>
 

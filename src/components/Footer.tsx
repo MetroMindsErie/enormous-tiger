@@ -51,7 +51,8 @@ export function Footer() {
               </span>
             </div>
             <p className="text-zinc-500 text-sm leading-relaxed">
-              Mission-Critical Product Intelligence derived from 30+ years of military and emergency response operations.
+              Our approach involves a precise and systematic evaluation of every product, a methodology built on a foundation of more than 30 years of accumulated knowledge derived from the intense operational requirements of military and emergency response.
+
             </p>
           </div>
 
@@ -131,9 +132,9 @@ export function Footer() {
         {/* Affiliate Disclaimer */}
         <div className="mt-6 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
           <p className="text-zinc-500 text-xs leading-relaxed text-center">
-            <span className="text-orange-600 uppercase tracking-wide">Affiliate Disclosure:</span> Enormous Tiger 
-            participates in affiliate programs. When you purchase through our assessed product links, we may earn 
-            a commission at no additional cost to you. This supports our mission to provide independent, field-tested 
+            <span className="text-orange-600 uppercase tracking-wide">Affiliate Disclosure:</span> Enormous Tiger
+            participates in affiliate programs. When you purchase through our assessed product links, we may earn
+            a commission at no additional cost to you. This supports our mission to provide independent, field-tested
             product intelligence. Our assessments remain unbiased and based solely on operational performance.
           </p>
         </div>

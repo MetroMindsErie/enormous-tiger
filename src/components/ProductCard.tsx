@@ -36,17 +36,12 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
         onClick?.();
       }}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
-        <motion.div
-          animate={{ scale: isHovered ? 1.1 : 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <ImageWithFallback
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800 flex items-center justify-center p-3">
+        <ImageWithFallback
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-contain"
+        />
         
         <motion.div
           className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"
